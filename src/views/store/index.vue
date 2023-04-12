@@ -2,92 +2,91 @@
   <div class="contentCont">
     <cardList />
     <div class="announcement">
-      <GoodsCard :item="item"></GoodsCard>
+      <GoodsCard
+        v-for="i in 4"
+        :key="i"
+        :item="tableData[Number(i) + 2]"
+      ></GoodsCard>
+      <div class="passAll">
+        <p class="title">质量公示</p>
+        <p class="desc">·暂停销售 | 甘肃省药品监督管理…</p>
+        <p class="desc">·注销 | 重庆市药品监督管理局关…</p>
+        <p class="desc">·抽检不合格 | 安徽省药品质量公…</p>
+        <p class="desc">·注销 | 关于《药品经营许可证》…</p>
+        <p class="desc">·抽检不合格 | 四川省药品监督管…</p>
+        <p class="desc">·抽检不合格 | 四川省药品监督管…</p>
+        <p class="title">公告</p>
+        <p class="desc">·【运营规则】商家发货规则</p>
+        <p class="desc">·【运营规则】售后服务及纠纷处理</p>
+      </div>
     </div>
     <img src="@/assets/line1.png" width="1200px" alt="" />
-
+    <itemTitle title="超值拼团专区"></itemTitle>
+    <div class="announcement1">
+      <GoodsCard :item="tableData[1]"></GoodsCard>
+      <img src="@/assets/public1.png" width="714px" alt="" />
+      <GoodsCard :item="tableData[2]"></GoodsCard>
+    </div>
+    <div class="announcement1">
+      <GoodsCard
+        v-for="i in 5"
+        :key="i"
+        :item="tableData[Number(i) + 5]"
+      ></GoodsCard>
+    </div>
     <img src="@/assets/line2.png" width="1200px" alt="" />
-
+    <itemTitle title="控销专区"></itemTitle>
+    <div class="announcement1">
+      <GoodsCard :item="tableData[11]"></GoodsCard>
+      <img src="@/assets/public2.png" width="714px" alt="" />
+      <GoodsCard :item="tableData[12]"></GoodsCard>
+    </div>
+    <div class="announcement1">
+      <GoodsCard
+        v-for="i in 5"
+        :key="i"
+        :item="tableData[Number(i) + 12]"
+      ></GoodsCard>
+    </div>
     <img src="@/assets/line3.png" width="1200px" alt="" />
+    <itemTitle title="新品首推专区"></itemTitle>
+    <div class="announcement1">
+      <GoodsCard :item="tableData[17]"></GoodsCard>
+      <img src="@/assets/public3.png" width="714px" alt="" />
+      <GoodsCard :item="tableData[18]"></GoodsCard>
+    </div>
+    <div class="announcement1">
+      <GoodsCard
+        v-for="i in 5"
+        :key="i"
+        :item="tableData[Number(i) + 18]"
+      ></GoodsCard>
+    </div>
 
     <img src="@/assets/line4.png" width="1200px" alt="" />
-    <!-- //添加购物车 -->
-    <el-dialog
-      title="加入购物车"
-      :visible.sync="dialogAdd"
-      width="450px"
-      :before-close="cancelAddCart"
-      class="pop_con"
-    >
-      <div class="pop_detail fl_center">
-        <div class="pop_element">
-          <!-- <div class="list"><span>编号：</span>{{ popCon.code || '--' }}</div> -->
-          <div class="list">
-            <span
-              ><img
-                :src="popCon.image || avater"
-                alt=""
-                style="width: 80px; height: 80px"
-            /></span>
-            <div class="listHeader">
-              {{ popCon.name || "--" }}
-              <span>
-                {{ popCon.specification || "--" }}
-              </span>
-              <p class="money">
-                ￥{{ listData[activeIndex]?.salePrice ?? "" }}
-              </p>
-            </div>
-          </div>
-          <div class="guige">
-            <div
-              v-for="(item, index) in listData"
-              :key="index"
-              style="margin-bottom: 10px"
-            >
-              <span
-                :class="activeIndex == index ? 'avtiveChoice' : 'everyOne'"
-                @click="choiceBox(index)"
-              >
-                {{ item.goodsSkuName }}
-                <span v-if="activeIndex == index" class="imgChoice">
-                  <img src="../../assets/选中.png" alt="" />
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
+    <itemTitle title="精选热销"></itemTitle>
+
+    <div class="announcement2">
+      <GoodsCard
+        v-for="i in 10 * amount"
+        :key="i"
+        :item="tableData[Number(i) + 23]"
+      ></GoodsCard>
+    </div>
+    <div class="loading" v-if="isLoad">
+      <div class="center">
+        <img src="@/assets/loading.png" width="32px" height="32px" alt="" />
+        <span>加载中...</span>
       </div>
-      <div slot="footer" class="dialog-footer">
-        <div class="dialog-bottom">
-          <el-input-number
-            v-model="qty"
-            size="small"
-            :min="listData[activeIndex]?.startWholesale ?? 0"
-            :max="listData[activeIndex]?.goodsSkuInventory ?? 0"
-            label="描述文字"
-          />
-          <span style="margin-left: 10px" class="number">{{
-            listData[activeIndex]?.goodsSkuUnit ?? ""
-          }}</span>
-          <span style="margin-left: 10px" class="number">
-            数量：{{ listData[activeIndex]?.goodsSkuInventory ?? "" }}
-          </span>
-        </div>
-        <el-button
-          size="mini"
-          icon="el-icon-shopping-cart-1"
-          type="primary"
-          @click="confirmAddCart"
-        >
-          加入购物车</el-button
-        >
-      </div>
-    </el-dialog>
+    </div>
+    <publicList />
   </div>
 </template>
 <script>
-import cardList from "./components/cardList.vue";
+import cardList from "./components/cardList";
+import itemTitle from "./components/itemTitle";
+import publicList from "./components/publicList";
+import { getJson } from "./components/index";
 import GoodsCard from "@/components/tableItem/tableItem.vue";
 import Pagination from "@/components/Pagination";
 import {
@@ -100,7 +99,7 @@ import avater from "/public/img/default.png";
 import { addCart, clinicSku } from "@/api/drugprocurement/buygoods";
 import Bus from "@/utils/bus.js";
 export default {
-  components: { GoodsCard, Pagination, cardList },
+  components: { GoodsCard, Pagination, cardList, itemTitle, publicList },
   data() {
     return {
       page: { total: 20, current: 1, size: 10 },
@@ -119,40 +118,47 @@ export default {
       queryKeyWord: null,
       gradeData: {},
       shopId: "",
-      item: {
-        approvalNumber: " 国药准字Z15021107",
-        beSelfSupport: null,
-        expireTime: "2026-03-20 00:00:00",
-        factory: "内蒙古库伦蒙药有限公司",
-        goodsId: "1636677541276205057",
-        goodsSkuId: "1638481564199337985",
-        goodsSkuInventory: 32210,
-        goodsSkuName: null,
-        image:
-          "https://eshop-develop.oss-cn-hangzhou.aliyuncs.com/goods/966f94f100764519ba21a3b9deb5c331.jpg",
-        marketPrice: null,
-        name: "清瘟消肿九味丸(内测)",
-        producedTime: null,
-        salePrice: "0.11",
-        salesVolume: 2002,
-        shopId: "1606205771220635650",
-        shopName: "湖南永正医药有限公司",
-        specification: "0.2g*90粒/盒",
-        startWholesale: null,
-      },
+      amount: 1,
+      isLoad: false,
     };
   },
   created() {
-    this.shopId = this.getQueryString("shopId");
+    this.shopId = "1606205771220635650";
   },
   mounted() {
-    this.getList();
-    Bus.$on("searchVal", (res) => {
-      this.queryKeyWord = res;
-      this.getGoods(this.shopId);
-    });
+    console.log(getJson());
+    this.tableData = getJson().data;
+    // Bus.$on("searchVal", (res) => {
+    //   this.queryKeyWord = res;
+    // this.getGoods(this.shopId);
+    // });
+    window.addEventListener("scroll", this.handleScroll, true);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.handleScroll, false);
   },
   methods: {
+    handleScroll() {
+      const that = this;
+      let scrollTop = document.documentElement.scrollTop; //滚动高度
+      let clientHeight = document.documentElement.clientHeight; //可视高度
+      let scrollHeight = document.documentElement.scrollHeight; //内容高度
+      if (
+        Number(Number(scrollHeight) - Number(clientHeight)) - 10 <
+          Number(scrollTop) &&
+        !that.isLoad
+      ) {
+        that.isLoad = true;
+        setTimeout(() => {
+          if (Number(Number(this.amount) * 10) + 23 < this.tableData.length) {
+            that.amount += 1;
+            that.isLoad = false;
+          } else {
+            that.isLoad = false;
+          }
+        }, 1000);
+      }
+    },
     getQueryString(name) {
       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
       var r = window.location.search.substr(1).match(reg);
@@ -163,41 +169,40 @@ export default {
     },
     pageChange() {},
     getList() {
-      this.getGoods(this.shopId);
-      salesTop({ shopId: this.shopId }).then((res) => {
-        if (res.code == 0) {
-          this.saleTopData = res.data;
-        } else {
-          this.$message({ type: "warning", message: res.msg });
-        }
-      });
-      getGoodClass({ shopId: this.shopId }).then((res) => {
-        if (res.code == 0) {
-          res.data.unshift({
-            classId: "",
-            className: "查看所有药品",
-          });
-          this.typeData = res.data;
-        } else {
-          this.$message({ type: "warning", message: res.msg });
-        }
-      });
-      getshopGrades({ shopId: this.shopId }).then((res) => {
-        this.gradeData = res ?? {};
-      });
+      // this.getGoods(this.shopId);
+      // salesTop({ shopId: this.shopId }).then((res) => {
+      //   if (res.code == 0) {
+      //     this.saleTopData = res.data;
+      //   } else {
+      //     this.$message({ type: "warning", message: res.msg });
+      //   }
+      // });
+      // getGoodClass({ shopId: this.shopId }).then((res) => {
+      //   if (res.code == 0) {
+      //     res.data.unshift({
+      //       classId: "",
+      //       className: "查看所有药品",
+      //     });
+      //     this.typeData = res.data;
+      //   } else {
+      //     this.$message({ type: "warning", message: res.msg });
+      //   }
+      // });
+      // getshopGrades({ shopId: this.shopId }).then((res) => {
+      //   this.gradeData = res ?? {};
+      // });
     },
     getGoods(shopId) {
-      shopGoodlist({
-        shopId: shopId,
-        goodsClassId: this.goodsClassId,
-        queryKeyWord: this.queryKeyWord,
-      }).then((res) => {
-        if (res.code == 0) {
-          this.tableData = res.data;
-        } else {
-          this.$message({ type: "warning", message: res.msg });
-        }
-      });
+      // shopGoodlist({
+      //   shopId: shopId,
+      //   goodsClassId: this.goodsClassId,
+      //   queryKeyWord: this.queryKeyWord,
+      // }).then((res) => {
+      //   if (res.code == 0) {
+      // } else {
+      //   this.$message({ type: "warning", message: res.msg });
+      // }
+      // });
     },
     selectBtn(item, index) {
       this.typeActive = index;
@@ -277,6 +282,78 @@ export default {
     background: #ffffff;
     border: 1px solid #d9d9d9;
     border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-bottom: 24px;
+    .passAll {
+      width: 259px;
+      height: 385px;
+      border-left: 1px solid #d9d9d9;
+      padding: 16px;
+      p {
+        margin: 0px;
+      }
+      .title {
+        font-size: 16px;
+        font-family: PingFang SC, PingFang SC-Semibold;
+        font-weight: 600;
+        text-align: left;
+        color: #262626;
+        line-height: 24px;
+        margin: 8px 0px;
+      }
+      .desc {
+        font-size: 14px;
+        font-family: PingFang SC, PingFang SC-Regular;
+        font-weight: 400;
+        text-align: left;
+        color: #595959;
+        line-height: 22px;
+      }
+    }
+  }
+  .announcement1 {
+    background: #ffffff;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-bottom: 24px;
+  }
+  .announcement2 {
+    display: grid;
+    grid-template-columns: 212px 212px 212px 212px 212px;
+    grid-template-rows: 385px auto;
+    grid-column-gap: 32px;
+    grid-row-gap: 24px;
+    margin-bottom: 24px;
+  }
+  .loading {
+    .center {
+      width: 100px;
+      margin: 0px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      font-family: PingFang SC, PingFang SC-Regular;
+      font-weight: 400;
+      text-align: left;
+      color: #8c8c8c;
+      line-height: 24px;
+      img {
+        animation: rote360 2s linear infinite;
+      }
+
+      @keyframes rote360 {
+        from {
+        }
+        to {
+          transform: rotateZ(360deg);
+        }
+      }
+    }
   }
 }
 </style>

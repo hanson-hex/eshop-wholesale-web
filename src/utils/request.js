@@ -5,7 +5,7 @@ import { getToken } from "@/utils/auth";
 
 // create an axios instance
 const service = axios.create({
-    baseURL: 'https://gateway.cbyyk.com', // url = base url + request url
+    baseURL: "https://gateway.cbyyk.com", // url = base url + request url
     // baseURL: 'http://client:8081', // url = base url + request url
     // withCredentials: true, // send cookies when cross-domain requests
     timeout: 5000, // request timeout
@@ -19,7 +19,8 @@ service.interceptors.request.use(
         // do something before request is sent
         // console.log(config.headers["isLogin"])
         if (!config.headers["isLogin"]) {
-            config.headers["Authorization"] = 'Bearer ' + getToken()
+            config.headers["Authorization"] =
+                "Bearer pig::13488188003::28d6dddd-fc0d-4e89-8186-2abd74862b56";
         }
         // "Bearer pig::13211111114::77de92f0-2a2c-421a-9c3a-ee1f1186a1c1"
         // "Bearer cbwx_mall::13422122004::a207833a-d8a2-4d4c-9acd-0d1e0fb1bd34";
