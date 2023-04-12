@@ -1,6 +1,6 @@
 {
-    "name": "eshop-shop-web",
-    "version": "1.0.8",
+    "name": "eshop-wholesale-web",
+    "version": "1.0.0-SNAPSHOT",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
