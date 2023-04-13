@@ -51,7 +51,7 @@ export const constantRoutes = [{
                 name: "store",
                 component: () =>
                     import ("@/views/store/index"),
-                meta: { title: "店铺", icon: "dashboard" },
+                meta: { title: "首页", icon: "dashboard" },
             },
             {
                 path: "storeAptitude",
@@ -59,7 +59,7 @@ export const constantRoutes = [{
                 component: () =>
                     import ("@/views/storeAptitude/index.vue"),
                 meta: { title: "资质审核", icon: "dashboard" },
-            }
+            },
         ],
     },
     // {
@@ -100,19 +100,18 @@ export const constantRoutes = [{
         component: () =>
             import ("@/views/merchantsettlement/index"),
         meta: { title: "我的资质管理", icon: "form" },
-        hidden: true
+        hidden: true,
     },
     {
         path: "/",
         name: "store",
         component: () =>
             import ("@/views/store/index"),
-        meta: { title: "店铺", icon: "form" },
-        hidden: true
+        meta: { title: "首页", icon: "form" },
+        hidden: true,
     },
 
     // 注释此处开始
-
 
     // {
     //   path: "/system",
@@ -604,12 +603,12 @@ export const dynamicRoutes = [
     //     }
     //   ]
     // }
-]
+];
 
-const routerPush = Router.prototype.push
+const routerPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
-    return routerPush.call(this, location).catch(error => error)
-}
+    return routerPush.call(this, location).catch((error) => error);
+};
 
 const createRouter = () =>
     new Router({

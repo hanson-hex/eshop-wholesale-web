@@ -6,7 +6,20 @@
         <div class="btnArea">
           <span>首页</span>
           <span>我的订单</span>
-          <span>购物车</span>
+          <el-badge :value="5" class="item">
+            <span
+              style="display: flex; justify-content: start; align-items: center"
+              ><img
+                src="@/assets/buymore.png"
+                width="16px"
+                height="16px"
+                alt=""
+                style="margin-right: 4px"
+              />
+              购物车</span
+            >
+          </el-badge>
+
           <span>收藏夹</span>
           <span>招商入驻</span>
           <span>用户中心</span>
@@ -220,7 +233,7 @@
       @click="handleClickOutside"
     />
     <app-main />
-    <div class="floatDiv">
+    <div class="floatDiv" v-if="isScroll">
       <div @click="scrollBtn(1000)">超值拼团</div>
       <div @click="scrollBtn(2000)">控销专区</div>
       <div @click="scrollBtn(3000)">新品首推</div>
@@ -667,6 +680,9 @@ export default {
         text-align: left;
         color: #595959;
         line-height: 22px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
         span {
           margin-left: 24px;
           cursor: pointer;
@@ -679,8 +695,8 @@ export default {
     width: 66px;
     height: 322px;
     border-radius: 4px;
-    top: 50%;
-    left: 0px;
+    top: calc((100vh - 322px) / 2);
+    left: calc((100vw - 1200px) / 2 - 80px);
     font-size: 16px;
     font-family: PingFang SC, PingFang SC-Regular;
     font-weight: 400;
