@@ -1,63 +1,36 @@
 <template>
-  <div>
-    <section class="app-main-cont">
+  <section class="app-main">
+    <!-- <sidebar v-if="!sidebar.hide" class="sidebar-container" /> -->
+    <router-view v-slot="{ Component, route }">
       <transition name="fade-transform" mode="out-in">
-        <router-view :key="key" />
+        <keep-alive :include="tagsViewStore.cachedViews">
+          <component :is="Component" v-if="!route.meta.link" :key="route.path" />
+        </keep-alive>
       </transition>
-    </section>
-    <!-- <div class="bottom">Copyright © 湖南春播云药库科技有限公司版权所有</div> -->
-  </div>
+    </router-view>
+    <!-- <MicroApp /> -->
+    <!-- <iframe-toggle /> -->
+  </section>
 </template>
 
-<script>
-export default {
-  name: "AppMain",
-  computed: {
-    key() {
-      return this.$route.path;
-    },
-  },
-};
+<script setup>
+import { computed } from 'vue';
+// import iframeToggle from './IframeToggle/index';
+import useTagsViewStore from '@/store/modules/tagsView';
+// import Sidebar from '@/layout/components/Sidebar/index.vue';
+
+// import useAppStore from '@/store/modules/app';
+// import MicroApp from '@/micro/MicroApp.vue';
+// const sidebar = computed(() => useAppStore().sidebar);
+const tagsViewStore = useTagsViewStore();
 </script>
 
-<style scoped>
-.app-main-cont {
-  /*50 = navbar  */
-  /* padding: 20px; */
-  /* background: #eee; */
-  /* height: calc(100vh - 190px); */
-  width: 1200px;
+<style lang="scss" scoped>
+.app-main {
+  /* 50= navbar  50  */
+  // min-height: calc(100vh - 50px);
+  width: 100%;
   position: relative;
-  border-radius: 4px;
-  padding-bottom: 0px;
-  margin: 0px auto;
-  overflow: auto;
-}
-.app-main-cont::-webkit-scrollbar {
-  width: 0px;
-}
-
-.fixed-header + .app-main {
-  padding-top: 50px;
-}
-
-.bottom {
-  height: 40px;
-  background: #eee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  font-family: PingFangSC, PingFangSC-Regular;
-  color: #8c8c8c;
-}
-</style>
-
-<style lang="scss">
-// fix css style bug in open el-dialog
-.el-popup-parent--hidden {
-  .fixed-header {
-    padding-right: 15px;
-  }
+  overflow: hidden;
 }
 </style>

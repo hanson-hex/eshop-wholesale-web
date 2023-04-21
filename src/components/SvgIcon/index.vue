@@ -1,61 +1,54 @@
 <template>
-  <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" v-on="$listeners" />
-  <svg v-else :class="svgClass" aria-hidden="true" v-on="$listeners">
-    <use :xlink:href="iconName" />
+  <svg :class="svgClass" aria-hidden="true">
+    <use :xlink:href="iconName" :fill="color" />
   </svg>
 </template>
 
 <script>
-import { isExternal } from '@/utils/validate'
-
-export default {
-  name: 'SvgIcon',
+import { defineComponent, computed } from 'vue';
+export default defineComponent({
   props: {
     iconClass: {
       type: String,
-      required: true
+      required: true,
     },
     className: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
+    color: {
+      type: String,
+      default: '',
+    },
   },
-  computed: {
-    isExternal() {
-      return isExternal(this.iconClass)
-    },
-    iconName() {
-      return `#icon-${this.iconClass}`
-    },
-    svgClass() {
-      if (this.className) {
-        return 'svg-icon ' + this.className
-      } else {
-        return 'svg-icon'
-      }
-    },
-    styleExternalIcon() {
-      return {
-        mask: `url(${this.iconClass}) no-repeat 50% 50%`,
-        '-webkit-mask': `url(${this.iconClass}) no-repeat 50% 50%`
-      }
-    }
-  }
-}
+  setup(props) {
+    return {
+      iconName: computed(() => `#icon-${props.iconClass}`),
+      svgClass: computed(() => {
+        if (props.className) {
+          return `svg-icon ${props.className}`;
+        }
+        return 'svg-icon';
+      }),
+    };
+  },
+});
 </script>
 
-<style scoped>
+<style scope lang="scss">
+.sub-el-icon,
+.nav-icon {
+  display: inline-block;
+  font-size: 15px;
+  margin-right: 12px;
+  position: relative;
+}
+
 .svg-icon {
   width: 1em;
   height: 1em;
-  vertical-align: -0.15em;
+  position: relative;
   fill: currentColor;
-  overflow: hidden;
-}
-
-.svg-external-icon {
-  background-color: currentColor;
-  mask-size: cover !important;
-  display: inline-block;
+  vertical-align: -2px;
 }
 </style>
