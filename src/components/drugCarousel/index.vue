@@ -15,6 +15,7 @@
           <img :src="item.url" alt="" />
         </li>
       </ul>
+      <div class="tip">温馨提示：部分商品包装更换频繁，如货品与图片不完全一致，请以收到的商品实物为准。</div>
     </div>
   </div>
 </template>
@@ -94,6 +95,11 @@ const enter = (event: any, id: number) => {
     }
     img-item:last-child {
       margin-right: 0;
+    }
+    .tip {
+      margin-top: 8px;
+      color: #8c8c8c;
+      font-size: 14px;
     }
   }
 }
