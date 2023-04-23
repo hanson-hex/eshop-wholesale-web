@@ -56,6 +56,11 @@ export const constantRoutes = [
     ],
   },
   {
+    path: '/detail',
+    component: () => import('@/views/detail/index.vue'),
+    hidden: true,
+  },
+  {
     path: '/login',
     component: () => import('@/views/login/index.vue'),
     hidden: true,
