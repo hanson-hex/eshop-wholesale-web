@@ -2,105 +2,105 @@
   <div class="app-footer">
     <div class="footer-card-box">
       <div class="main1200 footer-card">
-        <div class="footer-card-li">
-          <img src="@/assets/images/footer-card1.png" alt="" />
+        <div v-for="(li, i) in cardLists" :key="i" class="footer-card-li">
+          <img :src="`/src/assets/images/${li.img}`" alt="" />
           <div class="footer-card-txt">
-            <p class="title">精耕细作 稳步前行</p>
-            <!-- <p class="desc desc1">发票保障 满就包邮</p> -->
-          </div>
-        </div>
-        <div class="footer-card-li">
-          <img src="@/assets/images/footer-card2.png" alt="" />
-          <div class="footer-card-txt">
-            <p class="title">专业服务 极致体验</p>
-            <!-- <p class="desc desc1">百万好药 等你来选</p> -->
-          </div>
-        </div>
-        <div class="footer-card-li">
-          <img src="@/assets/images/footer-card3.png" alt="" />
-          <div class="footer-card-txt">
-            <p class="title">快速配送 带票销售</p>
-            <!-- <p class="desc desc1">专业物流 准时送达</p> -->
-          </div>
-        </div>
-        <div class="footer-card-li">
-          <img src="@/assets/images/footer-card4.png" alt="" />
-          <div class="footer-card-txt">
-            <p class="title">省时 · 省心 · 省力</p>
-            <!-- <p class="desc desc1">一键采购 便捷无忧</p> -->
+            <p class="title">{{ li.title }}</p>
+            <!-- <p class="desc">发票保障 满就包邮</p> -->
           </div>
         </div>
       </div>
     </div>
 
-    <div class="footer">
-      <div class="inner">
-        <div class="innerLeft">
-          <div class="desc1">
-            <div class="cont">
-              <p class="title">关于我们</p>
-              <p>公司官网</p>
-              <p>公司介绍</p>
-              <p>加入我们</p>
-            </div>
-            <div class="cont">
-              <p class="title">联系我们</p>
-              <p>资质指引</p>
-              <p>网站操作流程</p>
-              <p>APP操作流程</p>
-            </div>
-            <div class="cont">
-              <p class="title">联系客服</p>
-              <p>隐私协议</p>
-              <p>服务协议</p>
-              <p>法律声明</p>
-            </div>
-            <div class="cont">
-              <p class="title">合作招商</p>
-              <p>售后服务</p>
-            </div>
-          </div>
-          <div class="desc2">
-            <p>
-              <span class="label">客服热线：</span>
-              <span>400-0505-1111</span>
-            </p>
-            <p>
-              <span class="label">咨询时间：</span>
-              <span>8:00-20:00 周一至周日</span>
-            </p>
-            <p>
-              <span class="label">反馈邮箱：</span>
-              <span>400-0505-1111</span>
-            </p>
+    <div class="footer-info-box">
+      <div class="main1200 footer-info">
+        <div class="footer-info-left">
+          <div v-for="ul in linkLists" :key="ul.title" class="list">
+            <div>{{ ul.title }}</div>
+            <p v-for="li in ul.children" :key="li.title">{{ li.title }}</p>
           </div>
         </div>
-        <div class="innerRight">
+        <div class="footer-info-center">
           <div>
-            <img src="@/assets/erweima.png" width="80px" height="80px" alt="" />
-            商城小程序
+            <span class="label">客服热线：</span>
+            <span>400-0505-1111</span>
           </div>
           <div>
-            <img src="@/assets/erweima.png" width="80px" height="80px" alt="" />
-            商城小程序
+            <span class="label">咨询时间：</span>
+            <span>8:00-20:00 周一至周日</span>
           </div>
           <div>
-            <img src="@/assets/erweima.png" width="80px" height="80px" alt="" />
-            商城小程序
+            <span class="label">反馈邮箱：</span>
+            <span>400-0505-1111</span>
+          </div>
+        </div>
+        <div class="footer-info-right">
+          <div v-for="(li, i) in codeLists" :key="i" class="list">
+            <img :src="`/src/assets/images/${li.img}`" alt="" />
+            <p>{{ li.title }}</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="footerDown">
-      <p>监管机构：国家药品监督管理局 ｜ 营业执照号：91430121MAC3YJQM47 ｜ 药品网络交易第三方平台备案凭证：</p>
-      <p>药品医疗器械网络信息服务备案编号： 网络食品交易第三方平台备案编号： 医疗器械网络交易服务第三方平台备案凭证：</p>
-      <p>ICP备2022016495号-1 ｜ 电信业务经营许可证编号：字B2-20220424 ｜ Copyright湖南春播云药库科技有限公司版权所有</p>
+    <div class="footer-end-box">
+      <div class="main1200 footer-end">
+        <p>监管机构：国家药品监督管理局 ｜ 营业执照号：91430121MAC3YJQM47 ｜ 药品网络交易第三方平台备案凭证：</p>
+        <div class="">
+          <p>药品医疗器械网络信息服务备案编号：</p>
+          <p>网络食品交易第三方平台备案编号：</p>
+          <p>医疗器械网络交易服务第三方平台备案凭证：</p>
+        </div>
+        <p>ICP备2022016495号-1 ｜ 电信业务经营许可证编号：字B2-20220424 ｜ Copyright湖南春播云药库科技有限公司版权所有</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup name="appFooter">
-import { computed } from 'vue';
+import { ref, reactive, computed } from 'vue';
+// const loginTest = ref<any>()
+// const agreement = ref<boolean>(true);
+// const signFlag = ref<boolean>(false);
+const cardLists = reactive([
+  { img: 'footer-card1.png', title: '精耕细作 稳步前行' },
+  { img: 'footer-card2.png', title: '专业服务 极致体验' },
+  { img: 'footer-card3.png', title: '快速配送 带票销售' },
+  { img: 'footer-card4.png', title: '省时 · 省心 · 省力' },
+]);
+
+const linkLists = reactive([
+  {
+    title: '关于我们',
+    children: [
+      { title: '公司官网', type: 'url', link: '' },
+      { title: '公司介绍', type: 'url', link: '' },
+      { title: '加入我们', type: 'url', link: '' },
+    ],
+  },
+  {
+    title: '联系我们',
+    children: [
+      { title: '资质指引', type: 'url', link: '' },
+      { title: '网站操作流程', type: 'url', link: '' },
+      { title: 'APP操作流程', type: 'url', link: '' },
+    ],
+  },
+  {
+    title: '联系客服',
+    children: [
+      { title: '隐私协议', type: 'url', link: '' },
+      { title: '服务协议', type: 'url', link: '' },
+      { title: '法律声明', type: 'url', link: '' },
+    ],
+  },
+  { title: '合作招聘', children: [{ title: '售后服务', type: 'url', link: '' }] },
+]);
+const codeLists = reactive([
+  { img: 'erweima.png', title: '商城小程序' },
+  { img: 'erweima.png', title: '商城小程序' },
+  { img: 'erweima.png', title: '商城小程序' },
+]);
+
 // import iframeToggle from './IframeToggle/index';
 // import useTagsViewStore from '@/store/modules/tagsView';
 // import Sidebar from '@/layout/components/Sidebar/index.vue';
@@ -116,206 +116,138 @@ import { computed } from 'vue';
   position: relative;
   margin-top: 40px;
 }
-.footer-card {
-  width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  &-box {
-    background: #fff;
-  }
-  &-li {
-    width: 300px;
-    height: 128px;
-    padding: 32px 16px;
-    display: flex;
-    justify-content: start;
-    img {
-      display: block;
-      width: 64px;
-      height: 64px;
-    }
-  }
-  &-txt {
-    .title {
-      font-size: 18px;
-      font-weight: 600;
-      text-align: left;
-      color: #262626;
-      line-height: 26px;
-    }
-  }
-}
-
 .footer {
-  background-color: #f2f2f2;
-  padding: 24px 0px;
-  .inner {
-    width: 1200px;
-    margin: 0px auto;
+  &-card {
     display: flex;
     justify-content: space-between;
-    .innerLeft {
-      display: flex;
-      justify-content: space-between;
-      width: 852px;
-
-      .desc1 {
-        width: 70%;
-        display: flex;
-        justify-content: space-between;
-        border-right: 1px solid #d9d9d9;
-        div {
-          width: 130px;
-        }
-        .cont {
-          p {
-            font-size: 14px;
-            font-family: PingFang SC, PingFang SC-Regular;
-            font-weight: 400;
-            text-align: left;
-            color: #8c8c8c;
-            line-height: 22px;
-            margin: 0px;
-            cursor: pointer;
-          }
-          .title {
-            font-size: 16px;
-            font-family: PingFang SC, PingFang SC-Regular;
-            font-weight: 400;
-            text-align: left;
-            color: #262626;
-            line-height: 24px;
-            margin-bottom: 12px;
-          }
-        }
-      }
-      .desc2 {
-        width: 100%;
-        padding-left: 48px;
-        p {
-          margin: 0px 0px 12px;
-          cursor: pointer;
-          .label {
-            font-size: 14px;
-            font-family: PingFang SC, PingFang SC-Regular;
-            font-weight: 400;
-            text-align: left;
-            color: #8c8c8c;
-            line-height: 22px;
-          }
-          span {
-            font-size: 16px;
-            font-family: PingFang SC, PingFang SC-Regular;
-            font-weight: 400;
-            text-align: left;
-            color: #262626;
-            line-height: 24px;
-          }
-        }
-        // div {
-        //   width: 25%;
-        // }
-      }
+    align-items: center;
+    &-box {
+      background: #fff;
+      padding: 16px 0;
     }
-
-    .innerRight {
-      width: 348px;
+    &-li {
+      width: 300px;
+      height: 128px;
+      padding: 32px 16px;
       display: flex;
       justify-content: start;
-      align-items: center;
-      div {
-        width: 80px;
-        margin-left: 36px;
-        font-size: 14px;
-        font-family: PingFang SC, PingFang SC-Regular;
-        font-weight: 400;
-        text-align: center;
+      img {
+        display: block;
+        width: 64px;
+        height: 64px;
+      }
+    }
+    &-txt {
+      .title {
+        font-size: 18px;
+        font-weight: 600;
+        text-align: left;
         color: #262626;
+        line-height: 26px;
+        margin-left: 18px;
       }
     }
   }
-}
-.footerDown {
-  border-top: 1px solid #d9d9d9;
-  background-color: #f2f2f2;
-  padding: 24px 0px;
-  font-size: 14px;
-  font-family: PingFang SC, PingFang SC-Regular;
-  font-weight: 400;
-  text-align: center;
-  color: #8c8c8c;
-  line-height: 28px;
-  p {
-    margin: 0px;
+  &-end {
+    padding: 24px 0px;
+    &-box {
+      border-top: 1px solid #d9d9d9;
+    }
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #8c8c8c;
+      line-height: 2;
+      margin: 0;
+      text-align: center;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
   }
-}
-.headerTopcont {
-  height: 178px;
-  background: #fff;
-  border-bottom: 2px solid #f5222d;
-  .topInner {
-    width: 1200px;
-    margin: 0 auto;
-    .top {
+  &-info {
+    display: flex;
+    justify-content: space-between;
+    &-box {
+      background-color: #f2f2f2;
+      padding: 24px 0px;
+    }
+    &-left {
       display: flex;
       justify-content: space-between;
-      padding-top: 24px;
-      .imgClass {
-        width: 360px;
-        margin-top: 8px;
-      }
-      .middle {
-        padding-top: 12px;
-        .middleCont {
-          box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05), 0px 6px 16px 0px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
-        }
-        .middleContDown {
-          padding-top: 8px;
+      width: 520px;
+      border-right: 1px solid #d9d9d9;
+      .list {
+        width: 130px;
+        p {
           font-size: 14px;
-          font-family: PingFang SC, PingFang SC-Regular;
           font-weight: 400;
           text-align: left;
-          color: #595959;
+          color: #8c8c8c;
           line-height: 22px;
-          span {
-            cursor: pointer;
+          margin: 0px;
+          cursor: pointer;
+          &:hover {
+            color: var(--main-color);
+          }
+        }
+        div {
+          font-size: 16px;
+          font-weight: 400;
+          text-align: left;
+          color: #262626;
+          line-height: 24px;
+          margin-bottom: 12px;
+        }
+      }
+    }
+    &-center {
+      width: 260px;
+      div {
+        display: flex;
+        align-items: center;
+        line-height: 30px;
+        margin: 0px 0px 8px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        span {
+          font-size: 16px;
+          font-weight: 400;
+          text-align: left;
+          color: #262626;
+          &:first-child {
+            font-size: 14px;
+            color: #8c8c8c;
           }
         }
       }
-      // .logoImg {
-      //   margin: 0px 16px;
-      // }
-      // .dosce {
-      //   margin: 16px 0px 17px;
-      // }
-      .right {
-        width: 97px;
-        margin-left: 197px;
-
-        font-size: 14px;
-        font-family: PingFang SC, PingFang SC-Regular;
-        font-weight: 400;
-        text-align: center;
-        color: #595959;
-      }
     }
-    .down {
-      width: 100%;
-      height: 40px;
+    &-right {
+      width: 320px;
       display: flex;
-      margin-top: 22px;
-      justify-content: start;
-      .menu {
-        font-weight: 600;
-        font-size: 16px;
-        color: #262626;
-        margin-left: 48px;
+      justify-content: space-between;
+      align-items: flex-start;
+      .list {
+        max-width: 84px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        img {
+          display: block;
+          width: 80px;
+          height: 80px;
+          border: 1px dashed #969798;
+        }
+        p {
+          font-size: 14px;
+          font-weight: 400;
+          color: #262626;
+          margin: 8px 0;
+        }
       }
-      .active {
-        color: #0da1a8;
-      }
-      // background: #0da1a8;
     }
   }
 }
