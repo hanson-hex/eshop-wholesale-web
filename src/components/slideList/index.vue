@@ -4,7 +4,9 @@
     <div class="slide-list">
       <!-- 左边按钮 -->
       <div class="btn" @click="scrollLeft">
-        <i class="el-icon left-circle" />
+        <div class="el-icon left-circle">
+          <img src="@/assets/images/left-arrow.png" alt="" />
+        </div>
       </div>
       <!-- 中间列表 -->
       <div id="list-box" class="list-box">
@@ -22,14 +24,19 @@
             </div>
             <div class="price">¥{{ item.price }}</div>
             <div class="location">
-              {{ item.location }}
+              <img src="@/assets/images/shop.png" />
+              <span>
+                {{ item.location }}
+              </span>
             </div>
           </div>
         </div>
       </div>
       <!-- 右边按钮 -->
       <div class="btn" @click="scrollRight">
-        <i class="el-icon right-circle" />
+        <div class="el-icon right-circle">
+          <img src="@/assets/images/right-arrow.png" alt="" />
+        </div>
       </div>
     </div>
   </div>
@@ -49,7 +56,7 @@ const props = defineProps({
     }>,
     default: () => {
       let temp = [];
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 18; i++) {
         temp.push({
           url: 'https://youcaikeji.com/Uploads/Data/20210723/65209a4600ac1fb9b11a0c34102719cf.jpg',
           id: i,
@@ -66,30 +73,30 @@ const props = defineProps({
 });
 
 const scrollRight = () => {
-  const allLength = props.imgList.length * 225; // monitorList是项目列表
+  const allLength = props.imgList.length * 243; // monitorList是项目列表
   const boxLength = document.getElementById('list-box')!.clientWidth; // 用clientWidth获取外层div的宽度
   if (allLength < boxLength) return; // 不需要滑动
   const listEl = document.getElementById('list')!;
   const leftMove = Math.abs(parseInt(window.getComputedStyle(listEl, null).left));
-  if (leftMove + boxLength + 675 > allLength) {
+  if (leftMove + boxLength + 243 * 5 > allLength) {
     // 到底的时候
     listEl.style.left = '-' + (allLength - boxLength) + 'px';
   } else {
-    listEl.style.left = '-' + (leftMove + 675) + 'px';
+    listEl.style.left = '-' + (leftMove + 243 * 5) + 'px';
   }
 };
 
 const scrollLeft = () => {
-  const allLength = props.imgList.length * 225;
+  const allLength = props.imgList.length * 243;
   const boxLength = document.getElementById('list-box')!.clientWidth;
   if (allLength < boxLength) return;
   const listEl = document.getElementById('list')!;
   const leftMove = Math.abs(parseInt(window.getComputedStyle(listEl, null)?.left));
-  if (leftMove + boxLength - 675 < boxLength) {
+  if (leftMove + boxLength - 243 * 5 < boxLength) {
     // 滚到
     listEl.style.left = '0px';
   } else {
-    listEl.style.left = '-' + (leftMove - 360) + 'px';
+    listEl.style.left = '-' + (leftMove - 243 * 5) + 'px';
   }
 };
 </script>
@@ -102,6 +109,7 @@ const scrollLeft = () => {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    padding-bottom: 20px;
     .btn {
       position: relative;
       .left-circle {
@@ -117,6 +125,11 @@ const scrollLeft = () => {
         top: 50%;
 
         transform: translate(0, -50%);
+        img {
+          width: 20px;
+          height: 20px;
+          transform: translate(10px, 0);
+        }
       }
       .right-circle {
         /*左半圆*/
@@ -135,6 +148,11 @@ const scrollLeft = () => {
 
         transform: translate(0, -50%);
         clip: rect(0px 32px 64px 0px);
+        img {
+          width: 20px;
+          height: 20px;
+          transform: translate(-10px, 0);
+        }
       }
     }
     .list-box {
@@ -146,17 +164,47 @@ const scrollLeft = () => {
         display: flex;
         transform: all 2s;
         .list-item {
-          width: 227px;
+          width: 235px;
           height: 385px;
-          text-align: center;
           padding: 10px;
           cursor: pointer;
-          margin-left: 20px;
+          margin-left: 8px;
           border: 1px solid transparent;
           img {
             width: 211px;
             // height: 211px;
             max-width: none;
+          }
+
+          .name {
+            color: #262626;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 8px;
+            margin-bottom: 8px;
+          }
+          .spec {
+            font-size: 14px;
+            color: #595959;
+          }
+          .price {
+            font-size: 24px;
+            color: #f5222d;
+            font-weight: 600;
+            margin-top: 5px;
+            margin-bottom: 5px;
+          }
+          .location {
+            display: inline-block;
+            img {
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              margin-right: 8px;
+            }
+            color: #8c8c8c;
+            font-size: 14px;
+            font-weight: 400;
           }
         }
         .list-item:first-child {
@@ -177,6 +225,12 @@ const scrollLeft = () => {
     color: #262626;
     font-size: 16px;
     font-weight: 600;
+    padding-top: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 8px;
+    display: inline-block;
+    border-top: 4px solid #f5222d;
   }
 }
 </style>

@@ -1,9 +1,11 @@
 <template>
-  <breadcrumb separator=">">
-    <breadcrumb-item :to="{ path: '/' }">首页</breadcrumb-item>
-    <breadcrumb-item :to="{ path: '/' }">中成药</breadcrumb-item>
-    <breadcrumb-item>一般外药</breadcrumb-item>
-  </breadcrumb>
+  <div class="bread-crumb">
+    <breadcrumb separator=">">
+      <breadcrumb-item :to="{ path: '/' }">首页</breadcrumb-item>
+      <breadcrumb-item :to="{ path: '/' }">中成药</breadcrumb-item>
+      <breadcrumb-item>一般外药</breadcrumb-item>
+    </breadcrumb>
+  </div>
   <div class="detail-container">
     <div class="detail-header">
       <DrugCarousel></DrugCarousel>
@@ -169,6 +171,57 @@
       </div>
     </div>
     <slide-list></slide-list>
+    <div class="detail-body">
+      <div class="aside">
+        <div class="aside-one">
+          <div class="aside-title">药品分类</div>
+          <div class="item-list">
+            <div class="item">查看所有药品</div>
+            <div class="">
+              <div class="item">化学药品</div>
+              <div class="child-name-list">
+                <div class="child-item">神经系统用药</div>
+                <div class="child-item">制药辅料</div>
+                <div class="child-item">诊断用药物</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="aside-two">
+          <div class="aside-title">销售排行榜</div>
+          <div class="ranking-list">
+            <div class="ranking-item">
+              <div class="good">
+                <img src="@/assets/images/footer-card1.png" />
+              </div>
+              <div class="good-desc">
+                <div class="good-name">一键锁屏房东扥阿森</div>
+                <div class="good-spec">5mg*60粒/1盒</div>
+                <div class="good-price">11.80</div>
+                <div class="sales">销量：2564件</div>
+              </div>
+            </div>
+            <div class="ranking-item">
+              <div class="good">
+                <img src="@/assets/images/footer-card1.png" />
+              </div>
+              <div class="good-desc">
+                <div class="good-name">一键锁屏房东扥阿森</div>
+                <div class="good-spec">5mg*60粒/1盒</div>
+                <div class="good-price">11.80</div>
+                <div class="sales">销量：2564件</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-desc">
+        <div class="good-detail">
+          <div class="good-detail-title">宝贝详情</div>
+          <div class="empty"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -185,6 +238,8 @@ const router = useRouter();
 </script>
 
 <style lang="scss" scoped>
+.bread-crumb {
+}
 .detail-container {
   width: 1210px;
   margin: 0 auto;
@@ -490,6 +545,132 @@ const router = useRouter();
             margin-right: 8px;
           }
         }
+      }
+    }
+  }
+  .detail-body {
+    margin-top: 24px;
+    .aside-one {
+    }
+    .aside {
+      float: left;
+      width: 212px;
+      .aside-one {
+        margin-bottom: 20px;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        .item-list {
+          cursor: pointer;
+          .item {
+            color: #595959;
+            font-size: 14px;
+            font-weight: 600;
+            height: 32px;
+            line-height: 32px;
+            padding-left: 15px;
+          }
+          .item:hover {
+            background: #fff2f1;
+            color: #f5222d;
+          }
+          .child-name-list {
+            font-weight: 400;
+            .child-item {
+              padding-left: 32px;
+              padding-right: 32px;
+            }
+            .child-item:hover {
+              background: #fff2f1;
+              color: #f5222d;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .aside-two {
+        margin-bottom: 20px;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        .ranking-list {
+          padding-left: 8px;
+          padding-right: 8px;
+          padding-top: 16px;
+          .ranking-item {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .good {
+              width: 80px;
+              height: 80px;
+              margin-right: 10px;
+            }
+            .good-desc {
+              display: flex;
+              flex-direction: column;
+              .good-name {
+                font-size: 14px;
+                font-weight: 600;
+                color: #262626;
+                margin-bottom: 5px;
+                width: 100px; /*定义块元素的宽度*/
+                white-space: nowrap; /*内容超宽后禁止换行显示*/
+                overflow: hidden; /*超出部分隐藏*/
+                text-overflow: ellipsis; /*文字超出部分以省略号显示*/
+              }
+              .good-spec {
+                font-size: 12px;
+                color: #595959;
+                margin-bottom: 5px;
+              }
+              .good-price {
+                font-size: 14px;
+                font-weight: 600;
+                color: #f5222d;
+              }
+              .sales {
+                font-size: 12px;
+                color: #595959;
+              }
+            }
+          }
+        }
+      }
+      .aside-title {
+        height: 40px;
+        background: #fff2f1;
+        padding-left: 10px;
+        line-height: 40px;
+        border-bottom: 1px solid #d9d9d9;
+        // border-radius: 4px 4px 0px 0px;
+      }
+    }
+    .detail-desc {
+      width: 990px;
+      float: right;
+      min-height: 220px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+
+      .good-detail {
+        display: flex;
+        .good-detail-title {
+          color: #262626;
+          font-size: 16px;
+          font-weight: 600;
+          padding-top: 8px;
+          padding-left: 24px;
+          padding-right: 24px;
+          padding-bottom: 8px;
+          display: inline-block;
+          border-top: 4px solid #f5222d;
+        }
+      }
+      .empty {
+        display: flex;
+        flex-grow: 1;
+        border-left: 1px solid #d9d9d9;
+        border-bottom: 1px solid #d9d9d9;
       }
     }
   }
