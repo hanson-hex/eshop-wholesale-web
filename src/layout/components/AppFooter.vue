@@ -114,7 +114,8 @@ const codeLists = reactive([
 <style lang="scss" scoped>
 .app-footer {
   position: relative;
-  margin-top: 40px;
+  padding-top: 40px;
+  background-color: #fff;
 }
 .footer {
   &-card {
@@ -152,6 +153,7 @@ const codeLists = reactive([
     padding: 24px 0px;
     &-box {
       border-top: 1px solid #d9d9d9;
+      background-color: #f5f5f5;
     }
     p {
       font-size: 14px;
