@@ -3,12 +3,14 @@
     <div class="main1200 app-header-box">
       <div class="app-header-left">
         <div class="act">
-          <el-icon class="app-header-ico" size="16px"><Edit /></el-icon>
+          <!-- <el-icon class="app-header-ico" size="16px"><Edit /></el-icon> -->
+          <svg-icon class="app-header-ico" icon-class="location" />
           <span>湖南</span>
         </div>
         <div>欢迎您来到春播云药库！</div>
         <div class="act">
-          <el-icon class="app-header-ico" size="16px"><Edit /></el-icon>
+          <!-- <el-icon class="app-header-ico" size="16px"><Edit /></el-icon> -->
+          <svg-icon class="app-header-ico" icon-class="id-card" />
           <span>13244566777</span>
         </div>
       </div>
@@ -18,7 +20,8 @@
         <el-badge :value="5" class="app-header-badge">
           <p class="app-header-btn app-header-shop" @click="goRoute('/order/index')">
             <!-- <img src="@/assets/images/buymore.png" /> -->
-            <el-icon class="app-header-ico" size="16px"><ShoppingCartFull /></el-icon>
+            <!-- <el-icon class="app-header-ico" size="16px"><ShoppingCartFull /></el-icon> -->
+            <svg-icon class="app-header-ico" icon-class="shop-chat" />
             <span>购物车</span>
           </p>
         </el-badge>

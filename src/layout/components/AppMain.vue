@@ -32,6 +32,6 @@ const tagsViewStore = useTagsViewStore();
   background-color: #fff;
   width: 100%;
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
 }
 </style>
