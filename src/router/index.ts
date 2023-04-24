@@ -20,13 +20,13 @@ export const constantRoutes = [
         name: '首页',
         path: 'index',
       },
-      // {
-      // 	component: 'test/tpageb/index',
-      // 	hidden: false,
-      // 	meta: { title: 'testb', icon: 'peoples', noCache: false, link: null },
-      // 	name: 'Tpageb',
-      // 	path: 'tpageb',
-      // },
+      {
+        component: () => import('@/views/search/index.vue'),
+        hidden: false,
+        meta: { title: '搜索药品', icon: 'peoples', noCache: false, link: null },
+        name: 'Search',
+        path: 'search',
+      },
     ],
   },
   {
