@@ -33,7 +33,7 @@
           <div class="one-line">本药品 由湖南永正医药提供 <img src="@/assets/images/connect.png" alt="" /></div>
         </div>
         <div class="opt">
-          <el-button color="#F5222D">支付定金</el-button>
+          <el-button @click="handleOpen" color="#F5222D">支付定金</el-button>
         </div>
       </div>
     </div>
@@ -64,8 +64,53 @@
     </div>
     <slot></slot>
   </div>
+  <el-dialog v-model="dialogVisible" title="服务单确定" width="50%" :before-close="handleClose">
+    <div class="dialog-content">
+      <div class="item">
+        <div class="item-title">需求方： 顾德中医诊所</div>
+        <el-image
+          lazy
+          :src="item.image || '@/assets/images/default.png'"
+          alt=""
+          :preview-src-list="item.image ? [item.image] : []"
+          style="width: 120px; height: 120px"
+        />
+        <div class="item-name">
+          {{ item.name || '' }}
+        </div>
+        <div class="item-text">
+          {{ item.specification || '' }}
+        </div>
+        <div class="item-text">
+          {{ item.specification || '' }}
+        </div>
+        <div class="item-text">
+          {{ item.specification || '' }}
+        </div>
+      </div>
+      <div class="item"></div>
+    </div>
+    <div class="pay">
+      <p class="pay-price">应付定金：<span class="price">2000</span></p>
+      <p class="pay-text">请在 24 小时之内完成定金支付，超时服务单会被自动取消。</p>
+      <div class="q-code">
+        <img src="" alt="" />
+      </div>
+      <p class="tip">请使用手机微信或者支付宝扫一扫功能，扫码并支付。</p>
+      <div class="warn">支付定金代表接受服务方提供的服务。定金可抵扣 2000元 货款，后续如不采购则定金不可退还。</div>
+    </div>
+    <span>This is a message</span>
+    <!-- <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="dialogVisible = false"> Confirm </el-button>
+      </span>
+    </template> -->
+  </el-dialog>
 </template>
 <script setup lang="ts">
+import { ref } from 'vue';
+
 const props = defineProps({
   item: {
     type: Object,
@@ -74,6 +119,13 @@ const props = defineProps({
     },
   },
 });
+const dialogVisible = ref<boolean>(false);
+const handleOpen = () => {
+  dialogVisible.value = true;
+};
+const handleClose = () => {
+  dialogVisible.value = false;
+};
 console.log('props', props.item);
 </script>
 <style lang="scss" scoped>

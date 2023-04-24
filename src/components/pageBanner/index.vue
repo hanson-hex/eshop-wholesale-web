@@ -5,8 +5,6 @@
         <img src="@/assets/images/logo-chunbo-white.png" alt="" />
       </div>
       <slot name="append"></slot>
-      <!-- <div class="right-part">
-      </div> -->
     </div>
   </div>
 </template>
@@ -18,6 +16,7 @@
   background-color: #cf1422;
   height: 64px;
   display: flex;
+  min-width: 1200px;
   justify-content: center;
   .main1200 {
     display: flex;

@@ -60,8 +60,22 @@ export const constantRoutes = [
     component: () => import('@/views/detail/index.vue'),
   },
   {
+    name: 'findMedicine',
     path: '/findMedicine',
-    component: () => import('@/views/findMedicine/index.vue'),
+    alwaysShow: true,
+    component: Layout,
+    hidden: false,
+    meta: { title: '全球找药', icon: 'system', noCache: false, link: null },
+    redirect: 'noRedirect',
+    children: [
+      {
+        component: () => import('@/views/findMedicine/index.vue'),
+        hidden: false,
+        meta: { title: '全球找药', icon: 'user', noCache: false, link: null },
+        name: '全球找药',
+        path: 'index',
+      },
+    ],
   },
   {
     path: '/login',

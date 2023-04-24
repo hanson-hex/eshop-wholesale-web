@@ -20,9 +20,6 @@
     </template>
   </page-banner>
   <div class="main1200">
-    <el-tabs v-model="activeTab" class="flex-1" @tab-change="tabChange">
-      <el-tab-pane v-for="item in tabList" :key="item.id" :label="item.title" :name="item.id"> 测试{{ item.id }} </el-tab-pane>
-    </el-tabs>
     <div class="course-list">
       <div class="course-item">
         <span class="inex"> 1 </span>
@@ -49,12 +46,23 @@
         寻药完成
       </div>
     </div>
-    <div class="findMedicine-status-list">
-      <template v-if="tableData.length > 0">
-        <GoodsCard v-for="item in tableData" :key="item.id" :item="item"> </GoodsCard>
-      </template>
-    </div>
+    <el-tabs v-model="activeTab" class="flex-1" @tab-change="tabChange">
+      <el-tab-pane v-for="item in tabList" :key="item.id" :label="item.title" :name="item.id">
+        <div class="findMedicine-status-list">
+          <template v-if="tableData.length > 0">
+            <GoodsCard v-for="item in tableData" :key="item.id" :item="item"> </GoodsCard>
+          </template>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
   </div>
+  <!-- <div class="noData">
+    <img src="@/assets/images/no-Data.png" alt="" />
+    <p>
+      当前药品库中未找到相关药品，因不可抗力因素影响，不能保障所有需求都能及时满足，全球找药将全力扩展找药品种范围，如有进展将第一时间与您联系，感谢您的等待和支持。
+    </p>
+    <el-button color="#F5222D">提交申请，帮你找药</el-button>
+  </div> -->
 </template>
 
 <script setup lang="ts">
@@ -64,12 +72,10 @@ import GoodsCard from './medicineItem/medicineItem.vue';
 import { getJson } from './medicineItem/data.js';
 
 const inputVal = ref<string>('');
-const activeTab = ref<number>(0);
+const activeTab = ref<string>('apply');
 const tableData = ref<Array<any>>([]);
 
 tableData.value = getJson().data;
-
-console.log('tableData', tableData.value);
 
 const tabList = ref([
   {
@@ -168,7 +174,7 @@ const searchBtn = () => {
     align-items: center;
     position: absolute;
     right: 0;
-    top: 20px;
+    top: 15px;
     .course-item {
       font-size: 16px;
       color: #595959;
@@ -218,6 +224,28 @@ const searchBtn = () => {
   :deep(.el-tabs__active-bar) {
     background-color: #f5222d;
     height: 3px;
+  }
+}
+.noData {
+  margin: 0 auto;
+  display: flex;
+  min-height: 500px;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 290px;
+    height: 218px;
+  }
+  p {
+    max-width: 440px;
+    margin-top: 24px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: #8c8c8c;
+  }
+  :deep(button) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 </style>
