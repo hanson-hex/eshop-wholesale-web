@@ -11,6 +11,7 @@ import 'element-plus/theme-chalk/el-message-box.css';
 import 'element-plus/theme-chalk/el-overlay.css';
 import 'element-plus/theme-chalk/el-message.css';
 import '@/assets/styles/index.scss'; // global css
+import '@/assets/styles/tailwind.css';
 
 import App from './App.vue';
 import store from './store';
