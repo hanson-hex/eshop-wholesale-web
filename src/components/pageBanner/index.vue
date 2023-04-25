@@ -1,45 +1,43 @@
 <template>
-  <div class="page-header">
-    <div class="main1200">
-      <div class="logo">
-        <img src="@/assets/images/logo-chunbo-white.png" alt="" />
+  <div class="tools-bar-box">
+    <div class="main1200 tools-bar">
+      <div class="tools-bar-logo" @click="router.push({ path: '/' })">
+        <img src="@/assets/images/logo-white.png" alt="" />
       </div>
-      <slot name="append"></slot>
+      <div class="tools-bar-right">
+        <slot name="append"></slot>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+const router = useRouter();
+</script>
 
 <style lang="scss" scoped>
-.page-header {
-  background-color: #cf1422;
-  height: 64px;
+.tools-bar {
   display: flex;
-  min-width: 1200px;
-  justify-content: center;
-  .main1200 {
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  &-box {
+    background-color: #cf1422;
+    min-width: 1200px;
+  }
+  &-logo {
     display: flex;
-    justify-content: space-between;
-    .logo {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      img {
-        height: 40px;
-        width: 180px;
-      }
-      .logo-title {
-        font-weight: 600;
-        font-size: 24px;
-        color: #fff;
-        border-left: 1px solid rgba(255, 255, 255, 0.3);
-        padding-left: 24px;
-        margin-left: 20px;
-      }
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    img {
+      height: 40px;
+      width: 148px;
     }
-    .right-part {
-    }
+  }
+  &-right {
+    width: calc(100% - 160px);
   }
 }
 </style>
