@@ -11,7 +11,7 @@ import usePermissionStore from '@/store/modules/permission';
 
 NProgress.configure({ showSpinner: false });
 
-const whiteList = ['/login', '/index', '/register', '/order/index', '/detail', '/findMedicine/index'];
+const whiteList = ['/login', '/index', '/register', '/order/index', '/detail', '/findMedicine/index', '/findMedicine/search'];
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
@@ -68,6 +68,7 @@ router.beforeEach((to, from, next) => {
       // }
     }
   } else {
+    console.log('find', to.path);
     // 没有token
     if (whiteList.indexOf(to.path) !== -1) {
       // 在免登录白名单，直接进入
