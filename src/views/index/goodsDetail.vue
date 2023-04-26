@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="homeIndex">
+<script setup lang="ts" name="goodsDetail">
 import PageBanner from '@/components/pageBanner/index.vue';
 import pageTabs from '@/components/pageTabs/index.vue';
 import goodsItem from '@/components/goodsItem/index.vue';

@@ -18,3 +18,16 @@ onMounted(() => {
   });
 });
 </script>
+<style lang="scss">
+.app {
+  &-pagination {
+    margin-top: 16px;
+    &-center {
+      justify-content: center;
+    }
+    &-right {
+      justify-content: flex-end;
+    }
+  }
+}
+</style>

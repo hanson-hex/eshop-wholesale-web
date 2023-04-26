@@ -9,6 +9,8 @@
 	--color-59: #595959;
 	--color-26: #262626;
 	--color-d9: #d9d9d9;
+	--color-f2: #f2f2f2;
+	--color-8c: #8c8c8c;
 	// --next-bg-main-color: #f8f8f8;
 }
 
@@ -16,7 +18,9 @@
 	width: 1200px;
 	margin: 0 auto;
 }
-
+.ml-24{
+  margin-left: 24px;
+}
 body {
   height: 100%;
   margin: 0;
@@ -25,6 +29,7 @@ body {
   // -moz-osx-font-smoothing: grayscale;
   // -webkit-font-smoothing: antialiased;
   // text-rendering: optimizeLegibility;
+  font-family: PingFang SC, PingFangSC-Regular,Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
   // font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 

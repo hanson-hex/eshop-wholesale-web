@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="pageBanner">
 import { useRouter } from 'vue-router';
 const router = useRouter();
 </script>

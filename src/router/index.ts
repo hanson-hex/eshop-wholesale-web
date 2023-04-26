@@ -27,6 +27,13 @@ export const constantRoutes = [
         name: 'Search',
         path: 'search',
       },
+      {
+        component: () => import('@/views/shoppingCart/index.vue'),
+        hidden: false,
+        meta: { title: '购物车', icon: 'peoples', noCache: false, link: null },
+        name: 'shoppingCart',
+        path: 'shoppingcart',
+      },
     ],
   },
   {
