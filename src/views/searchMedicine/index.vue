@@ -20,41 +20,11 @@
     </template>
   </page-banner>
   <div class="main1200">
-    <div class="course-list">
-      <div class="course-item">
-        <span class="inex"> 1 </span>
-        寻药申请
-      </div>
-      <div class="gap"></div>
-      <div class="course-item">
-        <span class="inex"> 2 </span>
-        供应商接单
-      </div>
-      <div class="gap"></div>
-      <div class="course-item">
-        <span class="inex"> 3 </span>
-        支付定金
-      </div>
-      <div class="gap"></div>
-      <div class="course-item">
-        <span class="inex"> 4 </span>
-        支付补款
-      </div>
-      <div class="gap"></div>
-      <div class="course-item">
-        <span class="inex"> 5 </span>
-        寻药完成
-      </div>
+    <div class="search-list">
+      <template v-if="tableData.length > 0">
+        <GoodsCard v-for="item in tableData" :key="item.id" :item="item"> </GoodsCard>
+      </template>
     </div>
-    <el-tabs v-model="activeTab" class="flex-1" @tab-change="tabChange">
-      <el-tab-pane v-for="item in tabList" :key="item.id" :label="item.title" :name="item.id">
-        <div class="findMedicine-status-list">
-          <template v-if="tableData.length > 0">
-            <GoodsCard v-for="item in tableData" :key="item.id" :item="item"> </GoodsCard>
-          </template>
-        </div>
-      </el-tab-pane>
-    </el-tabs>
   </div>
   <!-- <div class="noData">
     <img src="@/assets/images/no-Data.png" alt="" />
@@ -67,15 +37,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-
-import { useRouter } from 'vue-router';
 import PageBanner from '@/components/pageBanner/index.vue';
-import GoodsCard from './medicineItem/medicineItem.vue';
-import { getJson } from './medicineItem/data.js';
-const router = useRouter();
+import GoodsCard from './searchMedicineItem/index.vue';
+import { getJson } from '../findMedicine/medicineItem/data.js';
 
 const inputVal = ref<string>('');
-const activeTab = ref<string>('apply');
 const tableData = ref<Array<any>>([]);
 
 tableData.value = getJson().data;
@@ -109,9 +75,6 @@ const tabChange = () => {
 
 const searchBtn = () => {
   console.log('searchBtn');
-  router.push({
-    path: '/findMedicine/search',
-  });
 };
 </script>
 
@@ -174,62 +137,15 @@ const searchBtn = () => {
 }
 .main1200 {
   position: relative;
+  margin-top: 24px;
   background-color: #fff;
-  .course-list {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    right: 0;
-    top: 15px;
-    .course-item {
-      font-size: 16px;
-      color: #595959;
-      display: flex;
-      align-items: center;
-      span {
-        display: inline-block;
-        line-height: 32px;
-        text-align: center;
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-        border-radius: 16px;
-        margin-right: 6px;
-        color: #d9d9d9;
-        border: 1px solid #d9d9d9;
-      }
-    }
-    .gap {
-      width: 50px;
-      height: 0px;
-      border-bottom: dotted 2px #d9d9d9;
-
-      margin-left: 8px;
-      margin-right: 8px;
-    }
-  }
-  .findMedicine-status-list {
+  .search-list {
     display: grid;
-    grid-template-columns: 389px 389px 389px;
-    grid-template-rows: 244px auto;
-    grid-column-gap: 16px;
-    grid-row-gap: 16px;
+    grid-template-columns: 212px 212px 212px 212px 212px;
+    grid-template-rows: 360px auto;
+    grid-column-gap: 32px;
+    grid-row-gap: 24px;
     margin-bottom: 24px;
-  }
-  :deep(.el-tabs__item) {
-    font-size: 16px;
-    font-weight: 600;
-    color: #595959;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    height: auto;
-  }
-  :deep(.el-tabs__item.is-active) {
-    color: #f5222d;
-  }
-  :deep(.el-tabs__active-bar) {
-    background-color: #f5222d;
-    height: 3px;
   }
 }
 .noData {

@@ -82,6 +82,13 @@ export const constantRoutes = [
         name: '全球找药',
         path: 'index',
       },
+      {
+        component: () => import('@/views/searchMedicine/index.vue'),
+        hidden: false,
+        meta: { title: '全球找药', icon: 'user', noCache: false, link: null },
+        name: '搜索',
+        path: 'search',
+      },
     ],
   },
   {
