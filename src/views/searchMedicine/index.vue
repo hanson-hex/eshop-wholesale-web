@@ -36,15 +36,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import PageBanner from '@/components/pageBanner/index.vue';
 import GoodsCard from './searchMedicineItem/index.vue';
 import { getJson } from '../findMedicine/medicineItem/data.js';
+import { seekDrugApplyList } from '@/api/findMedicine';
 
 const inputVal = ref<string>('');
 const tableData = ref<Array<any>>([]);
 
 tableData.value = getJson().data;
+
+const data = ref();
+onMounted(async () => {
+  const res = await seekDrugApplyList({});
+  data.value = res;
+});
 
 const tabList = ref([
   {

@@ -24,13 +24,18 @@ const whiteList = [
 ];
 router.beforeEach((to, from, next) => {
   NProgress.start();
+  console.log('from', from);
+  console.log('----', to.path);
   if (getToken()) {
+    console.log('1 to path', to.path);
     to.meta.title && useSettingsStore().setTitle(to.meta.title);
     /* has token*/
     if (to.path === '/login') {
       next({ path: '/' });
       NProgress.done();
     } else {
+      console.log('---', to.path);
+      next();
       // if (useUserStore().roles.length === 0) {
       // 	isRelogin.show = true;
       // 	// 判断当前用户是否已拉取完user_info信息

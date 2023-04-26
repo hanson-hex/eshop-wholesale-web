@@ -70,7 +70,7 @@
     </div>
     <div class="main1200">
       <div class="home-types">
-        <div v-for="(li, i) in typesList" :key="li.title" class="home-types-li" :class="`type${i + 1}`">
+        <div v-for="(li, i) in typesList" :key="li.title" @click="enter(i)" class="home-types-li" :class="`type${i + 1}`">
           <div class="home-types-li-txt">
             <div>{{ li.title }}</div>
             <p>{{ li.desc }}</p>
@@ -142,9 +142,38 @@ import lineImg from '@/components/lineImg/index.vue';
 import homeTitle from '@/components/homeTitle/index.vue';
 import goodsItem from '@/components/goodsItem/index.vue';
 import { ref, reactive, onUnmounted } from 'vue';
+import { useRouter } from 'vue-router';
+import useUserStore from '@/store/modules/user';
+import { getUserDetail } from '@/api/user';
+import { ElMessageBox } from 'element-plus/es/components';
+import { setToken } from '@/utils/auth';
+import { getUserInfo } from '@/utils/auth';
+
+const userStore = useUserStore();
+const $router = useRouter();
 const isLogin = ref(true);
 const isLoad = ref(false);
 const siderShow = ref(false);
+
+const initUserInfo = async () => {
+  const userStore = useUserStore();
+  const route = useRoute();
+  if (route.query.token) {
+    console.log('route.query.token', route.query.token);
+    const token = route.query.token as string;
+    setToken(token);
+    console.log('--', userStore.userInfo);
+  }
+  if (!userStore.userInfo) {
+    await getUserDetail();
+  }
+};
+onMounted(async () => {
+  console.log('111');
+  await initUserInfo();
+  console.log('222');
+});
+
 const bannerMaskList = reactive([
   { id: '2', title: '中西成药', img: 'banner-icon1.png' },
   { id: '3', title: '养生中药', img: 'banner-icon2.png' },
@@ -192,6 +221,17 @@ const form = reactive({
   password: '',
   type: ['记住密码'],
 });
+const enter = (i: number) => {
+  switch (i) {
+    case 0:
+      break;
+    case 3:
+      $router.push('/findMedicine/index');
+      break;
+    default:
+      break;
+  }
+};
 const onSubmit = () => {
   console.log('submit!');
 };

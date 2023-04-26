@@ -1,5 +1,6 @@
 import { login, logout } from '@/api/login';
 import type { UserAccount } from '@/api/types/login';
+import { getUserDetail } from '@/api/user';
 import { getToken, setToken, setUserInfo, remove } from '@/utils/auth';
 import { defineStore } from 'pinia';
 
@@ -7,6 +8,7 @@ const useUserStore = defineStore('user', {
   state: () => ({
     token: getToken(),
     name: '',
+    userInfo: null,
   }),
   actions: {
     // 登录
@@ -27,6 +29,16 @@ const useUserStore = defineStore('user', {
       // });
       //    });
     },
+    getUserDetail() {
+      return new Promise((resolve, reject) => {
+        getUserDetail().then((res) => {
+          console.log('user', res);
+          this.userInfo = res;
+          resolve(res);
+        });
+      });
+    },
+
     // 退出系统
     logOut() {
       return new Promise((resolve, reject) => {

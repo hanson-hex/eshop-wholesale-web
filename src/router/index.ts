@@ -10,7 +10,7 @@ export const constantRoutes = [
     component: Layout,
     hidden: false,
     meta: { title: '首页', icon: 'system', noCache: false, link: null },
-    redirect: 'noRedirect',
+    redirect: 'index',
     children: [
       {
         // component: '/index/index',
