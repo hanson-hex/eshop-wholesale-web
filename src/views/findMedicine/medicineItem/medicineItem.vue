@@ -3,7 +3,7 @@
     <div class="itemImg">
       <el-image
         lazy
-        :src="item.image || '/src/assets/images/default.png'"
+        :src="item.image || getImageUrl()"
         alt=""
         :preview-src-list="item.image ? [item.image] : []"
         style="width: 120px; height: 120px"
@@ -64,18 +64,26 @@
     </div>
     <slot></slot>
   </div>
-  <el-dialog v-model="dialogVisible" title="服务单确定" width="50%" :before-close="handleClose">
+  <el-dialog class="custom-dialog" v-model="dialogVisible" title="服务单确定" :before-close="handleClose">
     <div class="dialog-content-wrapper">
       <div class="dialog-content">
         <div class="item">
           <div class="item-title">需求方： 顾德中医诊所</div>
-          <el-image
-            lazy
-            src="'@/assets/images/default.png'"
-            alt=""
-            :preview-src-list="item.image ? [item.image] : []"
-            style="width: 120px; height: 120px"
-          />
+          <el-image lazy :src="getImageUrl()" alt="" :preview-src-list="item.image ? [item.image] : []" style="width: 120px; height: 120px" />
+          <div class="item-name">
+            {{ item.name || '' }}
+          </div>
+          <div class="item-text">
+            {{ item.specification || '' }}
+          </div>
+          <div class="item-text">
+            {{ item.specification || '' }}
+          </div>
+          <div class="item-text">{{ item.specification || '' }}≤100</div>
+        </div>
+        <div class="item">
+          <div class="item-title">服务方： 顾德中医诊所</div>
+          <el-image lazy :src="getImageUrl()" alt="" :preview-src-list="item.image ? [item.image] : []" style="width: 120px; height: 120px" />
           <div class="item-name">
             {{ item.name || '' }}
           </div>
@@ -86,7 +94,8 @@
             {{ item.specification || '' }}
           </div>
           <div class="item-text">
-            {{ item.specification || '' }}
+            商家报价:≤ {{ item.specification || '' }}
+            <span class="warn"> 便宜 10</span>
           </div>
         </div>
       </div>
@@ -98,7 +107,7 @@
         </div>
         <p class="tip">请使用手机微信或者支付宝扫一扫功能，扫码并支付。</p>
         <div class="warn">
-          <Warning class="warn-icon"></Warning>
+          <img class="warn-icon" src="@/assets/images/warning-circle-fill.png" alt="" />
           支付定金代表接受服务方提供的服务。定金可抵扣 2000元 货款，后续如不采购则定金不可退还。
         </div>
       </div>
@@ -114,6 +123,10 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
+
+const getImageUrl = () => {
+  return new URL('@/assets/images/default.png', import.meta.url).href;
+};
 
 const props = defineProps({
   item: {
@@ -302,81 +315,100 @@ console.log('props', props.item);
     }
   }
 }
-.dialog-content-wrapper {
-  display: flex;
-  flex-direction: column;
+.custom-dialog {
   min-width: 800px;
-  .dialog-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    .item {
-      width: 224px;
-      display: flex;
-      flex-direction: column;
-      .item-title {
-        width: 100%;
-        height: 44px;
-        text-align: center;
-        line-height: 44px;
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 16px;
-      }
-      .item-name {
-        color: #262626;
-        font-size: 16px;
-        margin-top: 5px;
-        margin-bottom: 5px;
-      }
-      .item-text {
-        font-size: 14px;
-        color: #595959;
-      }
-    }
-  }
-  .pay {
+  .dialog-content-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    font-size: 14px;
-    .pay-price {
-      font-size: 16px;
-
-      span {
-        font-size: 32px;
-        color: #f5222d;
-        font-weight: 500;
-      }
-    }
-    .pay-text {
-      font-size: 14px;
-      color: #f5222d;
-    }
-    .q-code {
-      img {
-        width: 184px;
-        height: 184px;
-      }
-    }
-    .tip {
-      color: #8c8c8c;
-      margin-top: 16px;
-    }
-    .warn {
+    .dialog-content {
       display: flex;
-      align-items: center;
-      padding: 0 20px;
-      .warn-icon {
-        width: 14px;
-        height: 14px;
-        background: #f99b0d;
-        margin-right: 10px;
+      flex-direction: row;
+      justify-content: space-between;
+      .item {
+        width: 224px;
+        display: flex;
+        flex-direction: column;
+        .item-title {
+          width: 100%;
+          height: 44px;
+          text-align: center;
+          line-height: 44px;
+          font-size: 16px;
+          font-weight: 600;
+          margin-bottom: 16px;
+          background: #fafafa;
+          border: 1px solid #d9d9d9;
+          border-radius: 4px;
+        }
+        .item-name {
+          color: #262626;
+          font-size: 16px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+        .item-text {
+          font-size: 14px;
+          color: #595959;
+          .warn {
+            height: 22px;
+            padding-left: 5px;
+            padding-right: 5px;
+            background: #fff2f1;
+            border: 1px solid #ffa39e;
+            text-align: center;
+            border-radius: 2px;
+            margin-left: 5px;
+          }
+        }
       }
-      height: 40px;
-      background-color: #fff9e6;
-      border: 1px solid #ffdb88;
-      border-radius: 4px;
+    }
+    .pay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 14px;
+      border-top: 1px solid #f2f2f2;
+      margin-top: 40px;
+      .pay-price {
+        font-size: 16px;
+
+        span {
+          font-size: 32px;
+          color: #f5222d;
+          font-weight: 500;
+        }
+      }
+      .pay-text {
+        font-size: 14px;
+        color: #f5222d;
+        margin-top: 8px;
+        margin-bottom: 24px;
+      }
+      .q-code {
+        img {
+          width: 184px;
+          height: 184px;
+        }
+      }
+      .tip {
+        color: #8c8c8c;
+        margin-top: 16px;
+        margin-bottom: 10px;
+      }
+      .warn {
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        .warn-icon {
+          width: 14px;
+          height: 14px;
+          margin-right: 10px;
+        }
+        height: 40px;
+        background-color: #fff9e6;
+        border: 1px solid #ffdb88;
+        border-radius: 4px;
+      }
     }
   }
 }

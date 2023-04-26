@@ -143,7 +143,7 @@
                   },
                 ]"
               >
-                <el-input placeholder="请输入备注信息" v-model.number="numberValidateForm.age" type="text" autocomplete="off" />
+                <el-input class="mark" placeholder="请输入备注信息" type="textarea" v-model.number="numberValidateForm.age" autocomplete="off" />
               </el-form-item>
             </el-col>
             <el-col :span="12">
@@ -154,12 +154,20 @@
                 </el-radio-group>
               </el-form-item>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="12"> </el-col>
+            <div class="bottom-btn">
               <el-form-item>
-                <el-button type="primary" @click="submitForm(formRef)">取消</el-button>
+                <el-radio-group v-model="numberValidateForm.age">
+                  <el-radio label="Sponsor">
+                    <span class="person-info"> 《个人信息收集处理告知书》 </span>
+                  </el-radio>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item>
+                <el-button class="cancel" type="primary" plain @click="submitForm(formRef)">取消</el-button>
                 <el-button type="primary" @click="submitForm(formRef)">提交申请</el-button>
               </el-form-item>
-            </el-col>
+            </div>
           </el-form>
         </div>
       </div>
@@ -243,7 +251,7 @@ const props = defineProps({
   },
 });
 
-const dialogVisible = ref<boolean>(true);
+const dialogVisible = ref<boolean>(false);
 const handleClose = () => {
   dialogVisible.value = false;
 };
@@ -357,11 +365,18 @@ const apply = () => {
     }
   }
 }
+:deep(.el-dialog__body) {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
 .custom-dialog {
   min-width: 800px;
   .dialog-content-wrapper {
     display: flex;
     flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
     // min-width: 800px;
     .warn {
       display: flex;
@@ -420,8 +435,32 @@ const apply = () => {
       }
     }
     .address {
+      margin-bottom: 8px;
       :deep(.el-select) {
-        width: 30%;
+        width: 31%;
+      }
+      .mark {
+        textarea {
+          height: 75px;
+        }
+      }
+    }
+    .bottom-btn {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      height: 52px;
+      align-items: center;
+      border-top: 1px solid #f2f2f2;
+      .el-form-item {
+        margin-bottom: 0;
+      }
+      .cancel {
+        background-color: #fff;
+      }
+      .person-info {
+        font-size: 14px;
+        color: #f5222d;
       }
     }
   }
